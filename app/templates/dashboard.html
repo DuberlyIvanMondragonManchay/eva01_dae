@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h3>Dashboard</h3>
+    {% if user %}
+    <p>Bienvenido <b>{{ user.name }}</b></p>
+    {% endif %}
+    <form action="{% url "dashboard" %}" method="POST">
+        {% csrf_token %}
+        <label for="num_horas">Ingrese el numero de horas</label>
+        <input id="num_horas" type="text" name="num_horas">
+        <label for="pago_horas">Pago por horas</label>
+        <input id="pago_horas" type="text" name="pago_horas">
+        <button class="btn btn-info">Calcular</button>
+    </form>
+
+    {% if data %}
+    <p>El pago semanal es <b>{{ data }}</b></p>
+    {% endif %}
+</div>
+
+{% endblock %}
